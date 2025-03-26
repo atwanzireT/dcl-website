@@ -8,106 +8,85 @@ import React from "react";
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
+    { href: "#portfolio", label: "Portfolio" },
+    { href: "#contact-us", label: "Contact" }
+  ];
+
   return (
-    <div className="w-full shadow-sm  hover:bg-slate-700 transition-colors">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+    <nav className="w-full bg-slate-900/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center">
+        <Link href="/" className="flex items-center space-x-3">
           <Image
             src="/logo.png"
-            alt="logo"
-            width={100}
-            height={50}
-            className="rounded"
+            alt="Digital Chronicles Africa Logo"
+            width={120}
+            height={60}
+            className="rounded-md object-contain"
           />
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 ">
-          <Link
-            href="/"
-            className=" text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="#about"
-            className="text-white hover:bg-blue-700 font-medium transition-colors"
-          >
-            About
-          </Link>
-          <Link
-            href="#projects"
-            className="text-white hover:bg-blue-700 font-medium transition-colors"
-          >
-            Projects
-          </Link>
-          {/* <Link
-            href="#choose"
-            className="text-white hover:bg-blue-700 font-medium transition-colors"
-          >
-            Why choose us
-          </Link> */}
-          <Link
-            href="#portfolio"
-            className="text-white hover:bg-blue-700 font-medium transition-colors"
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="#contact-us"
-            className="text-white  px-4 py-2 rounded font-medium hover:bg-blue-700 transition-colors"
-          >
-            Contact
-          </Link>
-        </nav>
+        <div className="hidden md:flex items-center space-x-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white/80 hover:text-white font-medium 
+                         px-3 py-2 rounded-md transition-all duration-300 
+                         hover:bg-blue-600/20 hover:scale-105"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-gray-700"
+          className="md:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle mobile menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden py-2 px-4 bg-white border-t">
-          <nav className="flex flex-col space-y-4">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="#about"
-              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="#projects"
-              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-            >
-              Projects
-            </Link>
-            <Link
-              href="#portfolio"
-              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="#contact"
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-center"
-            >
-              Contact
-            </Link>
-          </nav>
+        <div className="md:hidden fixed inset-0 bg-slate-900 z-40">
+          <div className="container mx-auto px-4 py-6">
+            {/* Mobile Close Button */}
+            <div className="flex justify-end mb-8">
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white"
+                aria-label="Close menu"
+              >
+                <X size={32} />
+              </button>
+            </div>
+
+            {/* Mobile Menu Links */}
+            <nav className="flex flex-col space-y-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-white/80 hover:text-white text-2xl font-semibold 
+                             py-3 border-b border-white/10 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 }
