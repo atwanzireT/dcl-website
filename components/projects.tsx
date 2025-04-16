@@ -2,70 +2,70 @@ import { Laptop, School, BookOpen, FileText } from "lucide-react";
 import React from "react";
 
 export default function Projects() {
+  const projects = [
+    {
+      icon: Laptop,
+      title: "Teacher ICT Training",
+      description: "Providing educators with skills in information and communication technology to enhance teaching efficiency and digital integration in classrooms.",
+      color: "sky"
+    },
+    {
+      icon: School,
+      title: "School Management Systems",
+      description: "Designing software to streamline administrative tasks such as attendance, grading, and communication for schools.",
+      color: "sky"
+    },
+    {
+      icon: BookOpen,
+      title: "Digital Literacy Programs",
+      description: "Offering training programs to equip both young people and adults with essential digital skills for work and everyday life.",
+      color: "sky"
+    },
+    {
+      icon: FileText,
+      title: "Paperless Classrooms",
+      description: "Implementing technologies that eliminate the need for paper, promoting the use of digital tools for teaching, assignments and assessments.",
+      color: "sky"
+    }
+  ];
+
   return (
-    <section id="projects" className="w-full min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-center font-bold text-blue-900 text-4xl pb-3 mb-8 border-b-2 border-blue-800">
-          PROJECTS
-        </h1>
-        <h2 className="text-center text-2xl p-2">
-          Smart solutions for smart cities
-        </h2>
-        ;
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex justify-center mb-4">
-              <Laptop size={48} className="text-blue-600" />
-            </div>
-            <h2 className="text-xl font-semibold text-blue-800 mb-3 text-center">
-              Teacher ICT Training
-            </h2>
-            <p className="text-gray-700">
-              Providing educators with skills in information and communication
-              technology to enhance teaching efficiency and digital integration
-              in classrooms.
-            </p>
-          </div>
+    <section id="projects" className="w-full min-h-screen bg-gray-50 py-16">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-sky-900 mb-4">
+            PROJECTS
+          </h1>
+          <div className="w-32 h-1 bg-sky-600 mx-auto mb-4"></div>
+          <h2 className="text-2xl text-sky-800">
+            Smart Solutions for Smart Cities
+          </h2>
+        </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex justify-center mb-4">
-              <School size={48} className="text-blue-600" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {projects.map((project, index) => (
+            <div 
+              key={index}
+              className="bg-white p-8 rounded-xl 
+                         shadow-lg border-t-4 border-sky-600 
+                         transform transition-all duration-300 
+                         hover:-translate-y-2 hover:shadow-xl"
+            >
+              <div className="flex justify-center mb-6">
+                <project.icon 
+                  size={56} 
+                  className="text-sky-600 group-hover:text-sky-700 
+                             transition-colors duration-300"
+                />
+              </div>
+              <h2 className="text-2xl font-bold text-sky-900 mb-4 text-center">
+                {project.title}
+              </h2>
+              <p className="text-gray-700 text-center leading-relaxed">
+                {project.description}
+              </p>
             </div>
-            <h2 className="text-xl font-semibold text-blue-800 mb-3 text-center">
-              School Management Systems
-            </h2>
-            <p className="text-gray-700">
-              Designing software to streamline administrative tasks such as
-              attendance, grading, and communication for schools.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex justify-center mb-4">
-              <BookOpen size={48} className="text-blue-600" />
-            </div>
-            <h2 className="text-xl font-semibold text-blue-800 mb-3 text-center">
-              Digital Literacy Programs
-            </h2>
-            <p className="text-gray-700">
-              Offering training programs to equip both young people and adults
-              with essential digital skills for work and everyday life.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex justify-center mb-4">
-              <FileText size={48} className="text-blue-600" />
-            </div>
-            <h2 className="text-xl font-semibold text-blue-800 mb-3 text-center">
-              Paperless Classrooms
-            </h2>
-            <p className="text-gray-700">
-              Implementing technologies that eliminate the need for paper,
-              promoting the use of digital tools for teaching, assignments and
-              assessments.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

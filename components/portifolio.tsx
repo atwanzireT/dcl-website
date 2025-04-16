@@ -64,11 +64,11 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-center font-bold text-blue-900 text-4xl pb-3 mb-4 border-b-2 border-blue-800">
+        <h1 className="text-center font-bold text-sky-900 text-4xl pb-3 mb-4 border-b-2 border-sky-900">
           PORTFOLIO
         </h1>
 
-        <h2 className="text-2xl text-center text-blue-800 mb-8">
+        <h2 className="text-2xl text-center text-sky-800 mb-8">
           Our expertise
         </h2>
 

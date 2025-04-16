@@ -1,22 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Choose() {
-  // State to track which FAQ is open
   const [openFaq, setOpenFaq] = useState(null);
 
-  // Toggle FAQ open/close
   const toggleFaq = (index) => {
-    if (openFaq === index) {
-      setOpenFaq(null);
-    } else {
-      setOpenFaq(index);
-    }
+    setOpenFaq(openFaq === index ? null : index);
   };
 
-  // FAQ data
   const faqs = [
     {
       question: "What services does Digital Chronicles Ltd offer?",
@@ -36,15 +28,15 @@ export default function Choose() {
   ];
 
   return (
-    <section id="choose" className="w-full py-16 bg-gray-50">
+    <section id="choose" className="w-full py-16 bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-3/5 space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-sky-900 mb-4 tracking-tight">
               Why Choose Us
             </h1>
 
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-600 text-lg leading-relaxed mb-8">
               At Digital Chronicles Ltd, we combine innovation with expertise to
               offer digital and smart solutions tailored to modern-day
               challenges. Here&apos;s why partnering with us is the best choice
@@ -55,23 +47,30 @@ export default function Choose() {
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm"
+                  className="border border-blue-100 rounded-xl overflow-hidden bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                 >
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-blue-50 transition-colors"
+                    className="w-full flex justify-between items-center p-4 text-left font-semibold text-sky-900 hover:bg-blue-50 transition-colors group"
                   >
-                    <span>{`0${index + 1}. ${faq.question}`}</span>
+                    <span className="flex items-center">
+                      <span className="text-sky-500 mr-3 font-bold">
+                        0{index + 1}
+                      </span>
+                      {faq.question}
+                    </span>
                     {openFaq === index ? (
-                      <ChevronUp className="text-blue-600 flex-shrink-0" />
+                      <ChevronUp className="text-sky-600 w-6 h-6 transform group-hover:scale-110 transition-transform" />
                     ) : (
-                      <ChevronDown className="text-blue-600 flex-shrink-0" />
+                      <ChevronDown className="text-sky-600 w-6 h-6 transform group-hover:scale-110 transition-transform" />
                     )}
                   </button>
 
                   {openFaq === index && (
-                    <div className="p-4 bg-blue-50 border-t border-gray-200">
-                      <p className="text-gray-700">{faq.answer}</p>
+                    <div className="p-4 bg-blue-50/50 border-t border-blue-100 animate-fade-in">
+                      <p className="text-gray-700 leading-relaxed">
+                        {faq.answer}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -80,15 +79,13 @@ export default function Choose() {
           </div>
 
           <div className="w-full md:w-2/5 mt-8 md:mt-0">
-            <div className="relative rounded-lg overflow-hidden shadow-lg h-96 w-full">
-              <Image
-                className="object-cover"
-                fill
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-105">
+              <img
+                className="w-full h-96 object-cover"
                 src="/images/img2.jpg"
                 alt="Why choose Digital Chronicles Ltd"
-                sizes="(max-width: 768px) 100vw, 40vw"
-                priority
               />
+              <div className="absolute inset-0 bg-sky-900/20 hover:bg-transparent transition-colors duration-300"></div>
             </div>
           </div>
         </div>

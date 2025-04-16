@@ -18,9 +18,9 @@ export default function ContactUs() {
   };
 
   return (
-    <section id="contact" className="w-full py-16 bg-blue-50/50">
+    <section id="contact" className="w-full py-16 bg-sky-50/50">
       <div className="container mx-auto px-4">
-        <h1 className="text-center font-bold text-blue-900 text-4xl mb-12">
+        <h1 className="text-center font-bold text-sky-900 text-4xl mb-12">
           CONTACT US
         </h1>
 

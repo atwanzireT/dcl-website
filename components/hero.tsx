@@ -44,7 +44,7 @@ export default function Hero() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-900 hover:bg-blue-50 font-semibold py-4 px-8 rounded-xl 
+                className="bg-white text-sky-900 hover:bg-sky-50 font-semibold py-4 px-8 rounded-xl 
                            transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl 
                            transform hover:-translate-y-1"
               >

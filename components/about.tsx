@@ -22,7 +22,7 @@ export default function About() {
               <h3 className="text-2xl font-bold text-sky-600 mb-5">Who We Are</h3>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  Digital Chronicles is a forward-thinking organization that offers innovative digital and smart solutions to modern development challenges. Our managed services simplify ICT management, enhancing your institution's productivity.
+                  Digital Chronicles is a forward-thinking organization that offers innovative digital and smart solutions to modern development challenges. Our managed services simplify ICT management, enhancing your institution&rsquo;s productivity.
                 </p>
                 <p>
                   We deliver optimal solutions for businesses of all sizes, partnering with organizations to maximize their ICT infrastructure and resources.
