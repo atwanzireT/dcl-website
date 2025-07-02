@@ -2,82 +2,281 @@
 import React from "react";
 import Image from "next/image";
 import Navigation from "@/components/navigation";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Cloud, BookOpen, BarChart2, ArrowRight, ChevronRight } from "lucide-react";
 
 export default function Hero() {
+  const { scrollY } = useScroll();
+  const yPos = useTransform(scrollY, [0, 500], [0, 100]);
+
   return (
-    <div>
-      {/* Sticky Navigation */}
-      <div className="sticky top-0 z-50">
+    <div className="relative">
+      {/* Sticky Navigation with Glass Effect */}
+      <div className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200/20">
         <Navigation />
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-screen w-full overflow-hidden">
-        {/* Background Image */}
+      <div className="relative min-h-screen w-full overflow-hidden">
+        {/* Background with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/background.jpg"
-            alt="background"
-            fill
-            className="object-cover"
-            priority
-          />
+          <motion.div style={{ y: yPos }} className="absolute inset-0">
+            <Image
+              src="/images/background.jpg"
+              alt="Digital transformation background"
+              fill
+              className="object-cover"
+              priority
+              quality={100}
+            />
+          </motion.div>
+          
+          {/* Premium Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-blue-900/90" />
+          
+          {/* Animated Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{
+                  opacity: [0, 0.3, 0],
+                  y: [0, Math.random() * 100 + 50],
+                  x: Math.random() * 100 - 50
+                }}
+                transition={{
+                  duration: Math.random() * 10 + 10,
+                  repeat: Infinity,
+                  delay: Math.random() * 5
+                }}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Content Container with Animations */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 h-full w-full flex items-center"
-        >
-          <div className="container mx-auto px-6">
-            <div className="max-w-xl space-y-6">
-              <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
-                Digital Chronicles Africa
-              </h1>
-              <p className="text-xl text-white/90 font-light leading-relaxed">
-                Empowering schools and communities through innovative information technology solutions. 
-                We proactively create, maintain, and transform digital environments.
-              </p>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-sky-900 hover:bg-sky-50 font-semibold py-4 px-8 rounded-xl 
-                           transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl 
-                           transform hover:-translate-y-1"
+        {/* Content Container */}
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              
+              {/* Left Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-8"
               >
-                Explore Our Mission
-              </motion.button>
+                {/* Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-400/30 backdrop-blur-sm shadow-lg"
+                >
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse" />
+                  <span className="text-blue-200 text-sm font-medium tracking-wide">
+                    For Knowledge And Innovation
+                  </span>
+                </motion.div>
+
+                {/* Main Heading */}
+                <div className="space-y-4">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="text-4xl md:text-5xl font-bold text-white leading-tight"
+                  >
+                    <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                      Digital Chronicles
+                    </span>
+                    <br />
+                    <span className="text-blue-300 text-2xl md:text-3xl font-light">
+                      Transforming Africa Through Technology
+                    </span>
+                  </motion.h1>
+                  
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: "6rem" }}
+                    transition={{ delay: 0.8, duration: 0.8 }}
+                    className="h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                  />
+                </div>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-xl text-gray-200 leading-relaxed max-w-xl font-light"
+                >
+                  Pioneering innovative IT solutions that empower educational institutions and communities across Africa. We architect, implement, and optimize digital ecosystems for sustainable growth.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-4 pt-2"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl
+                      hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25
+                      border border-blue-500/50 overflow-hidden"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Explore Our Solutions
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </motion.button>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group px-8 py-3 border-2 border-white/30 text-white font-semibold rounded-xl
+                      hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm flex items-center"
+                  >
+                    View Portfolio
+                    <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  </motion.button>
+                </motion.div>
+
+                {/* Key Metrics */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                  className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10"
+                >
+                  {[
+                    { number: "150+", label: "Projects Delivered" },
+                    { number: "50K+", label: "Users Impacted" },
+                    { number: "99.9%", label: "Uptime Guarantee" },
+                  ].map((metric, index) => (
+                    <motion.div 
+                      key={index}
+                      whileHover={{ y: -5 }}
+                      className="text-center"
+                    >
+                      <div className="text-3xl lg:text-4xl font-bold text-white mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        {metric.number}
+                      </div>
+                      <div className="text-sm text-gray-300 font-medium">
+                        {metric.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* Right Visual Element */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="hidden lg:block relative"
+              >
+                <div className="relative">
+                  {/* Floating Cards */}
+                  <div className="space-y-6">
+                    {[
+                      { title: "Cloud Infrastructure", icon: <Cloud size={24} />, status: "Active" },
+                      { title: "Digital Learning", icon: <BookOpen size={24} />, status: "Deployed" },
+                      { title: "Data Analytics", icon: <BarChart2 size={24} />, status: "Optimized" },
+                    ].map((card, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
+                        whileHover={{ scale: 1.05, x: -10 }}
+                        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6
+                          hover:bg-white/15 transition-all duration-300 cursor-pointer group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-4">
+                            <div className="p-3 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                              {card.icon}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-white">{card.title}</div>
+                              <div className="text-sm text-gray-300">{card.status}</div>
+                            </div>
+                          </div>
+                          <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Client Logos Section */}
-      <div className="bg-gray-50 py-12">
-        <div className="container mx-auto">
-          <div className="flex flex-row flex-wrap justify-center items-center space-x-10 opacity-70 hover:opacity-100 transition-opacity duration-300">
+      {/* Premium Client Logos Section */}
+      <div className="bg-gradient-to-b from-gray-50 to-white py-16 border-t border-gray-200">
+        <div className="container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <p className="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">
+              Trusted by Leading Organizations
+            </p>
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "8rem" }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              className="h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto"
+            />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center items-center gap-12 lg:gap-16"
+          >
             {[
               { src: "/clients/client-1.png", alt: "Mastercard" },
               { src: "/clients/client-2.jpeg", alt: "FC" },
-              { src: "/clients/client-3.jpeg", alt: "Children Violence" }
+              { src: "/clients/client-3.jpeg", alt: "Children Violence Prevention" },
             ].map((client, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
-                whileHover={{ scale: 1.1 }}
-                className="relative w-40 h-16 hover:grayscale-0 transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-40 h-20 hover:grayscale-0 transition-all duration-500
+                  opacity-60 hover:opacity-100 cursor-pointer"
               >
                 <Image
                   src={client.src}
                   alt={client.alt}
                   fill
-                  className="object-contain"
+                  className="object-contain filter drop-shadow-sm"
+                  quality={100}
                 />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
