@@ -104,8 +104,8 @@ const About = () => {
                 whileHover={{ x: 5 }}
                 className="mt-8 inline-flex items-center text-blue-600 font-medium group"
               >
-                <span className="mr-2">Learn more about us</span>
-                <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                {/* <span className="mr-2">Learn more about us</span> */}
+                {/* <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" /> */}
               </motion.a>
             </div>
           </motion.div>

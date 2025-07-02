@@ -150,10 +150,10 @@ const Projects = () => {
                   
                   <div className="mt-auto w-full">
                     <div className="h-0.5 bg-gradient-to-r from-transparent via-slate-200 to-transparent my-4"></div>
-                    <button className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors flex items-center justify-center mx-auto">
+                    {/* <button className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors flex items-center justify-center mx-auto">
                       Learn more
                       <ChevronRight className="w-4 h-4 ml-1" />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </motion.div>
