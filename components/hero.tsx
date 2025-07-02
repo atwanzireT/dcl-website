@@ -72,7 +72,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-400/30 backdrop-blur-sm shadow-sm"
+                  className="inline-flex items-center mt-24 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-400/30 backdrop-blur-sm shadow-sm"
                 >
                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse" />
                   <span className="text-blue-600 text-sm font-medium tracking-wide">
@@ -86,13 +86,13 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
+                    className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight"
                   >
-                    <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                      Digital Chronicles
+                    <span className="bg-gradient-to-r font-extrabold from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                      Digital Chronicles Africa
                     </span>
                     <br />
-                    <span className="text-blue-700 text-2xl md:text-3xl font-light">
+                    <span className="text-blue-700 text-xl md:text-2xl font-light">
                       Transforming Africa Through Technology
                     </span>
                   </motion.h1>
@@ -110,7 +110,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-xl text-gray-700 leading-relaxed max-w-xl font-light"
+                  className="text-xl font-normal text-gray-700 leading-relaxed max-w-xl bg-white/20 p-2 rounded-2xl"
                 >
                   Pioneering innovative IT solutions that empower educational institutions and communities across Africa. We architect, implement, and optimize digital ecosystems for sustainable growth.
                 </motion.p>

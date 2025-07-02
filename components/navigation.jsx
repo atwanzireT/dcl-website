@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -38,18 +37,11 @@ export default function Navigation() {
     { href: "#contact", label: "Contact" }
   ];
 
-  const toggleDropdown = (index) => {
-    if (isMobile) {
-      // On mobile, close menu when a link is clicked
-      setIsMenuOpen(false);
-    }
-    setActiveDropdown(activeDropdown === index ? null : index);
-  };
-
   return (
     <motion.nav
-      className={`w-full backdrop-blur-md transition-all duration-300 fixed top-0 z-50 ${scrolled ? "bg-white/90 shadow-lg" : "bg-white/95"
-        }`}
+      className={`w-full fixed top-0 z-50 bg-white shadow-sm transition-all duration-300 ${
+        scrolled ? "shadow-md" : ""
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -76,7 +68,7 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <div key={link.href} className="relative">
                 <Link
                   href={link.href}
@@ -126,12 +118,12 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 bg-white backdrop-blur-lg z-40 pt-20 pb-8"
+            className="lg:hidden fixed inset-0 bg-white z-40 pt-20 pb-8 overflow-y-auto"
           >
-            <div className="container mx-auto px-4 h-full flex flex-col">
-              <nav className="flex-1 flex flex-col justify-between">
-                {/* Main Links - Takes available space */}
-                <div className="space-y-2">
+            <div className="container mx-auto px-4 h-full">
+              <div className="flex flex-col h-full">
+                {/* Main Links */}
+                <div className="space-y-2 flex-grow">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -145,7 +137,7 @@ export default function Navigation() {
                 </div>
 
                 {/* CTA Button - Fixed at bottom */}
-                <div className="pt-4 mt-auto border-t border-gray-200">
+                <div className="pt-4 mt-4 border-t border-gray-200">
                   <Link
                     href="#contact"
                     onClick={() => setIsMenuOpen(false)}
@@ -154,7 +146,7 @@ export default function Navigation() {
                     Get Started
                   </Link>
                 </div>
-              </nav>
+              </div>
             </div>
           </motion.div>
         )}
