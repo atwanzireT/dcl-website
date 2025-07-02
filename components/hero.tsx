@@ -12,6 +12,7 @@ export default function Hero() {
   return (
     <div className="relative">
       {/* Hero Section */}
+      <Navigation/>
       <div className="relative min-h-screen w-full overflow-hidden ">
         {/* Background with Light Overlay */}
         <div className="absolute inset-0 z-0">
