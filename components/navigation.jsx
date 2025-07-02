@@ -9,13 +9,25 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   const navLinks = [
@@ -27,14 +39,17 @@ export default function Navigation() {
   ];
 
   const toggleDropdown = (index) => {
+    if (isMobile) {
+      // On mobile, close menu when a link is clicked
+      setIsMenuOpen(false);
+    }
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
   return (
-    <motion.nav 
-      className={`w-full backdrop-blur-md transition-all duration-300 sticky top-0 z-50 ${
-        scrolled ? "bg-slate-900/95 shadow-xl" : "bg-slate-900/80"
-      }`}
+    <motion.nav
+      className={`w-full backdrop-blur-md transition-all duration-300 fixed top-0 z-50 ${scrolled ? "bg-white/90 shadow-lg" : "bg-white/95"
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -43,7 +58,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative"
@@ -63,62 +78,17 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link, index) => (
               <div key={link.href} className="relative">
-                {link.subLinks ? (
-                  <>
-                    <button
-                      onClick={() => toggleDropdown(index)}
-                      className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${
-                        activeDropdown === index 
-                          ? "text-white bg-blue-600/20" 
-                          : "text-white/90 hover:text-white hover:bg-white/5"
-                      }`}
-                    >
-                      {link.label}
-                      <ChevronDown 
-                        className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-                          activeDropdown === index ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    <AnimatePresence>
-                      {activeDropdown === index && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute left-0 mt-2 w-56 origin-top-right rounded-xl bg-slate-800/95 backdrop-blur-lg shadow-2xl ring-1 ring-white/10 overflow-hidden"
-                          onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                          <div className="py-1">
-                            {link.subLinks.map((subLink) => (
-                              <Link
-                                key={subLink.href}
-                                href={subLink.href}
-                                className="block px-4 py-3 text-sm text-white/90 hover:text-white hover:bg-blue-600/20 transition-colors duration-200"
-                              >
-                                {subLink.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 text-white/90 hover:text-white hover:bg-white/5"
-                  >
-                    {link.label}
-                  </Link>
-                )}
+                <Link
+                  href={link.href}
+                  className="px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 text-gray-800 hover:text-blue-600 hover:bg-blue-50"
+                >
+                  {link.label}
+                </Link>
               </div>
             ))}
 
             {/* CTA Button */}
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="ml-4"
@@ -135,14 +105,14 @@ export default function Navigation() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 rounded-md text-white/90 hover:text-white focus:outline-none"
+            className="lg:hidden p-2 rounded-md text-gray-800 hover:text-blue-600 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle mobile menu"
           >
             {isMenuOpen ? (
-              <X size={28} className="text-white" />
+              <X size={28} className="text-gray-800" />
             ) : (
-              <Menu size={28} className="text-white/90 hover:text-white" />
+              <Menu size={28} className="text-gray-800 hover:text-blue-600" />
             )}
           </button>
         </div>
@@ -156,67 +126,26 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 bg-slate-900/95 backdrop-blur-lg z-40 pt-20 pb-8 overflow-y-auto"
+            className="lg:hidden fixed inset-0 bg-white backdrop-blur-lg z-40 pt-20 pb-8"
           >
-            <div className="container mx-auto px-4">
-              <nav className="flex flex-col space-y-1">
-                {navLinks.map((link) => (
-                  <div key={link.href}>
-                    {link.subLinks ? (
-                      <div className="mb-2">
-                        <button
-                          onClick={() => toggleDropdown(link.href)}
-                          className={`w-full flex justify-between items-center px-4 py-4 text-lg font-medium rounded-lg ${
-                            activeDropdown === link.href
-                              ? "text-white bg-blue-600/20"
-                              : "text-white/90 hover:text-white"
-                          }`}
-                        >
-                          {link.label}
-                          <ChevronDown
-                            className={`h-5 w-5 transition-transform duration-200 ${
-                              activeDropdown === link.href ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
+            <div className="container mx-auto px-4 h-full flex flex-col">
+              <nav className="flex-1 flex flex-col justify-between">
+                {/* Main Links - Takes available space */}
+                <div className="space-y-2">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-4 py-4 text-lg font-medium text-gray-800 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
 
-                        {activeDropdown === link.href && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="pl-6 overflow-hidden"
-                          >
-                            {link.subLinks.map((subLink) => (
-                              <Link
-                                key={subLink.href}
-                                href={subLink.href}
-                                onClick={() => {
-                                  setIsMenuOpen(false);
-                                  setActiveDropdown(null);
-                                }}
-                                className="block px-4 py-3 text-white/80 hover:text-white text-base rounded-lg hover:bg-white/5 transition-colors"
-                              >
-                                {subLink.label}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="block px-4 py-4 text-lg font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-
-                <div className="pt-4 mt-4 border-t border-white/10">
+                {/* CTA Button - Fixed at bottom */}
+                <div className="pt-4 mt-auto border-t border-gray-200">
                   <Link
                     href="#contact"
                     onClick={() => setIsMenuOpen(false)}

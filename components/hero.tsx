@@ -11,14 +11,9 @@ export default function Hero() {
 
   return (
     <div className="relative">
-      {/* Sticky Navigation with Glass Effect */}
-      <div className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200/20">
-        <Navigation />
-      </div>
-
       {/* Hero Section */}
-      <div className="relative min-h-screen w-full overflow-hidden">
-        {/* Background with Gradient Overlay */}
+      <div className="relative min-h-screen w-full overflow-hidden ">
+        {/* Background with Light Overlay */}
         <div className="absolute inset-0 z-0">
           <motion.div style={{ y: yPos }} className="absolute inset-0">
             <Image
@@ -31,17 +26,16 @@ export default function Hero() {
             />
           </motion.div>
           
-          {/* Premium Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-blue-900/90" />
-          
-          {/* Animated Particles */}
+          {/* Light Gradient Overlay */}
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-[6px]" />
+          {/* Subtle Animated Particles */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(15)].map((_, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{
-                  opacity: [0, 0.3, 0],
+                  opacity: [0, 0.2, 0],
                   y: [0, Math.random() * 100 + 50],
                   x: Math.random() * 100 - 50
                 }}
@@ -50,7 +44,7 @@ export default function Hero() {
                   repeat: Infinity,
                   delay: Math.random() * 5
                 }}
-                className="absolute w-1 h-1 bg-white rounded-full"
+                className="absolute w-1 h-1 bg-blue-400 rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`
@@ -77,10 +71,10 @@ export default function Hero() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-400/30 backdrop-blur-sm shadow-lg"
+                  className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-400/30 backdrop-blur-sm shadow-sm"
                 >
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse" />
-                  <span className="text-blue-200 text-sm font-medium tracking-wide">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse" />
+                  <span className="text-blue-600 text-sm font-medium tracking-wide">
                     For Knowledge And Innovation
                   </span>
                 </motion.div>
@@ -91,13 +85,13 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-4xl md:text-5xl font-bold text-white leading-tight"
+                    className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
                   >
-                    <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                       Digital Chronicles
                     </span>
                     <br />
-                    <span className="text-blue-300 text-2xl md:text-3xl font-light">
+                    <span className="text-blue-700 text-2xl md:text-3xl font-light">
                       Transforming Africa Through Technology
                     </span>
                   </motion.h1>
@@ -115,7 +109,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-xl text-gray-200 leading-relaxed max-w-xl font-light"
+                  className="text-xl text-gray-700 leading-relaxed max-w-xl font-light"
                 >
                   Pioneering innovative IT solutions that empower educational institutions and communities across Africa. We architect, implement, and optimize digital ecosystems for sustainable growth.
                 </motion.p>
@@ -131,7 +125,7 @@ export default function Hero() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     className="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl
-                      hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25
+                      hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/25
                       border border-blue-500/50 overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center">
@@ -144,8 +138,8 @@ export default function Hero() {
                   <motion.button
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group px-8 py-3 border-2 border-white/30 text-white font-semibold rounded-xl
-                      hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm flex items-center"
+                    className="group px-8 py-3 border-2 border-blue-600/30 text-blue-600 font-semibold rounded-xl
+                      hover:bg-blue-50 hover:border-blue-600/50 transition-all duration-300 flex items-center"
                   >
                     View Portfolio
                     <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
@@ -157,7 +151,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
-                  className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10"
+                  className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200"
                 >
                   {[
                     { number: "150+", label: "Projects Delivered" },
@@ -169,10 +163,10 @@ export default function Hero() {
                       whileHover={{ y: -5 }}
                       className="text-center"
                     >
-                      <div className="text-3xl lg:text-4xl font-bold text-white mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                      <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-1">
                         {metric.number}
                       </div>
-                      <div className="text-sm text-gray-300 font-medium">
+                      <div className="text-sm text-gray-600 font-medium">
                         {metric.label}
                       </div>
                     </motion.div>
@@ -191,9 +185,9 @@ export default function Hero() {
                   {/* Floating Cards */}
                   <div className="space-y-6">
                     {[
-                      { title: "Cloud Infrastructure", icon: <Cloud size={24} />, status: "Active" },
-                      { title: "Digital Learning", icon: <BookOpen size={24} />, status: "Deployed" },
-                      { title: "Data Analytics", icon: <BarChart2 size={24} />, status: "Optimized" },
+                      { title: "Cloud Infrastructure", icon: <Cloud size={24} className="text-blue-600" />, status: "Active" },
+                      { title: "Digital Learning", icon: <BookOpen size={24} className="text-blue-600" />, status: "Deployed" },
+                      { title: "Data Analytics", icon: <BarChart2 size={24} className="text-blue-600" />, status: "Optimized" },
                     ].map((card, index) => (
                       <motion.div
                         key={index}
@@ -201,17 +195,17 @@ export default function Hero() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
                         whileHover={{ scale: 1.05, x: -10 }}
-                        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6
-                          hover:bg-white/15 transition-all duration-300 cursor-pointer group"
+                        className="bg-white backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-sm
+                          hover:shadow-md transition-all duration-300 cursor-pointer group"
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-4">
-                            <div className="p-3 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                            <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
                               {card.icon}
                             </div>
                             <div>
-                              <div className="font-semibold text-white">{card.title}</div>
-                              <div className="text-sm text-gray-300">{card.status}</div>
+                              <div className="font-semibold text-gray-900">{card.title}</div>
+                              <div className="text-sm text-gray-500">{card.status}</div>
                             </div>
                           </div>
                           <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
@@ -226,8 +220,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Premium Client Logos Section */}
-      <div className="bg-gradient-to-b from-gray-50 to-white py-16 border-t border-gray-200">
+      {/* Client Logos Section */}
+      <div className="bg-white py-16 border-t border-gray-200">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -264,14 +258,13 @@ export default function Hero() {
                 key={index}
                 whileHover={{ scale: 1.1, y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="relative w-40 h-20 hover:grayscale-0 transition-all duration-500
-                  opacity-60 hover:opacity-100 cursor-pointer"
+                className="relative w-40 h-20 transition-all duration-500"
               >
                 <Image
                   src={client.src}
                   alt={client.alt}
                   fill
-                  className="object-contain filter drop-shadow-sm"
+                  className="object-contain"
                   quality={100}
                 />
               </motion.div>
