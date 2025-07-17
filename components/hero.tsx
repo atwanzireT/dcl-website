@@ -147,32 +147,7 @@ export default function Hero() {
                   </motion.button>
                 </motion.div>
 
-                {/* Key Metrics */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.8 }}
-                  className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200"
-                >
-                  {[
-                    { number: "150+", label: "Projects Delivered" },
-                    { number: "50K+", label: "Users Impacted" },
-                    { number: "99.9%", label: "Uptime Guarantee" },
-                  ].map((metric, index) => (
-                    <motion.div 
-                      key={index}
-                      whileHover={{ y: -5 }}
-                      className="text-center"
-                    >
-                      <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-1">
-                        {metric.number}
-                      </div>
-                      <div className="text-sm text-gray-600 font-medium">
-                        {metric.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+             
               </motion.div>
 
               {/* Right Visual Element */}
