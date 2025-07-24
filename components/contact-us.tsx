@@ -38,7 +38,7 @@ export default function ContactUs() {
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-[length:60px_60px]"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -101,7 +101,7 @@ export default function ContactUs() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
         >
           {/* Map Section */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
             className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[400px]"
           >
@@ -123,13 +123,13 @@ export default function ContactUs() {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
             className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 overflow-hidden"
           >
             <div className="p-8 md:p-10">
               <h2 className="text-2xl font-bold text-slate-800 mb-6">Send us a message</h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -197,7 +197,7 @@ export default function ContactUs() {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 md:p-10"
         >
           {/* Address */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
             className="flex flex-col items-center text-center md:text-left md:items-start"
           >
@@ -210,7 +210,7 @@ export default function ContactUs() {
           </motion.div>
 
           {/* Contact */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
             className="flex flex-col items-center text-center md:text-left md:items-start"
           >
@@ -223,7 +223,7 @@ export default function ContactUs() {
           </motion.div>
 
           {/* Email */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
             className="flex flex-col items-center text-center md:text-left md:items-start"
           >
@@ -247,14 +247,37 @@ export default function ContactUs() {
           <h3 className="text-xl font-bold text-slate-800 mb-6">Connect With Us</h3>
           <div className="flex justify-center space-x-6">
             {[
-              { icon: <FaFacebookF size={20} />, color: "text-blue-600", hover: "bg-blue-100" },
-              { icon: <FaXTwitter size={20} />, color: "text-black", hover: "bg-gray-200" },
-              { icon: <FaInstagram size={20} />, color: "text-pink-600", hover: "bg-pink-100" },
-              { icon: <FaWhatsapp size={20} />, color: "text-green-600", hover: "bg-green-100" }
+              {
+                icon:
+                  <FaFacebookF size={20} />,
+                color: "text-blue-600",
+                hover: "bg-blue-100",
+                href: "https://www.facebook.com/share/1aCN7xFX6a/"
+              },
+              {
+                icon:
+                  <FaXTwitter size={20} />,
+                color: "text-black",
+                hover: "bg-gray-200"
+              },
+              {
+                icon:
+                  <FaInstagram size={20} />,
+                color: "text-pink-600",
+                hover: "bg-pink-100",
+                href: "https://www.instagram.com/dc4africa?igsh=MWdnYThwZ2NtaDN1eQ=="
+              },
+              {
+                icon:
+                  <FaWhatsapp size={20} />,
+                color: "text-green-600",
+                hover: "bg-green-100",
+                href: "https://chat.whatsapp.com/LVCyQxJ9VLD8E6dpU99m6I?mode=r_c"
+              }
             ].map((social, index) => (
               <a
                 key={index}
-                href="#"
+                href={`${social.href || "#"} `}
                 className={`${social.color} bg-gray-100 p-4 rounded-full hover:${social.hover} transition-all duration-300 hover:scale-110`}
                 aria-label={`${social.color.split('-')[1]} social media`}
               >

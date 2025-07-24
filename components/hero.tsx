@@ -227,6 +227,7 @@ export default function Hero() {
           >
             {[
               { src: "/clients/client-1.png", alt: "Mastercard" },
+              { src: "/clients/theirworld.png", alt: "TheirWorld" },
               { src: "/clients/client-2.jpeg", alt: "FC" },
               { src: "/clients/client-3.jpeg", alt: "Children Violence Prevention" },
             ].map((client, index) => (
